@@ -1,0 +1,52 @@
+<!doctype html>
+<html>
+  <head>
+    <title><%= json.project.title %></title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <%= t.include("partials/_adHead.html") %>
+  </head>
+  <body>
+
+    <responsive-child>
+
+      <div class="outer">
+        <div class="aspect-ratio-outer">
+          <div class="aspect-ratio-inner">
+
+            <leaflet-map zoom=9>
+              <tile-layer layer="cartoPositron"></tile-layer>
+            </leaflet-map>
+
+          </div>
+        </div>
+
+        <aside class="legend">
+          <h1>Legend</h1>
+
+          <ul class="scale">
+            <li><span class="block" style="background-color: #DDF4E9;"></span> Asparagus</li>
+            <li><span class="block" style="background-color: #A7CEB4;"></span> Broccoli</li>
+            <li><span class="block" style="background-color: #4C855F;"></span> Cauliflower</li>
+            <li><span class="block" style="background-color: #0F3F18;"></span> Dandelion</li>
+          </ul>
+
+          <cite class="source">
+            Source: <a href="http://htaindex.cnt.org/">The H+T Affordability Index</a>
+            <div class="credit">AUDREY CARLSEN / THE SEATTLE TIMES</div>
+          </cite>
+        </aside>
+      </div>
+
+      <div class="note">Note: The Center for Neighborhood Technology bears no responsibility for the analyses or interpretations of the data presented here.</div>
+
+    </responsive-child>
+
+    <script src="app.js"></script>
+    <% if (json.project.production) { %>
+    <%= !json.project.embedded ? t.include("partials/_adFoot.html") : "" %>
+    <%= t.include("partials/_workHere.html") %>
+    <% } %>
+  </body>
+</html>
