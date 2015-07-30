@@ -8,8 +8,8 @@
 @import "seattletimes";
 @import "legend";
 
-@aspect-ratio: 7/10;
-@legend-length: 4;
+@aspect-ratio: 10/7;
+@legend-length: 10;
 
 body {
   font-family: @df-sans;
@@ -18,10 +18,13 @@ body {
 
 .outer {
   position: relative;
+  max-width: 420px;
+  margin: auto;
 }
 
 .aspect-ratio-outer {
-  width: 100%;
+  width: 95%;
+  margin: auto;
   position: relative;
 
   .aspect-ratio-inner {

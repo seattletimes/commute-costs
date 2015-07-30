@@ -12,16 +12,15 @@ var L = mapElement.leaflet;
 var map = mapElement.map;
 
 function getColor(d) {
-  return d > 0.1 ? '#006837' :
-         d > 0.08 ? '#1a9850' :
-         d > 0.05 ? '#66bd63' :
-         d > 0.03 ? '#a6d96a' :
+  return d > 0.09 ? '#006837' :
+         d > 0.06 ? '#1a9850' :
+         d > 0.03 ? '#66bd63' :
+         d > 0.01 ? '#a6d96a' :
          d > 0 ?    '#d9ef8b' :
-         d == "0%" ?   'black'   :
-         d > -.03 ? '#fee08b' :
-         d > -.05 ? '#fdae61' :
-         d > -.08 ? '#f46d43' :
-         d > -.1 ? '#d73027' :
+         d > -.01 ? '#fee08b' :
+         d > -.03 ? '#fdae61' :
+         d > -.06 ? '#f46d43' :
+         d > -.09 ? '#d73027' :
                     '#a50026' ;
 }
 
