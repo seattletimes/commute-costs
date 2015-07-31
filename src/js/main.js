@@ -11,6 +11,11 @@ var mapElement = document.querySelector("leaflet-map");
 var L = mapElement.leaflet;
 var map = mapElement.map;
 
+var onEachFeature = function(feature, layer) {
+  // feature.properties.roundedDollars = feature.properties.Dollars_pe.toFixed(2);
+  layer.bindPopup(require("./popup.js")(feature.properties.jobschange))
+};
+
 function getColor(d) {
   return d > 0.09 ? '#006837' :
          d > 0.06 ? '#1a9850' :
@@ -34,4 +39,4 @@ function style(feature) {
   };
 }
 
-L.geoJson(data, {style: style}).addTo(map);
+L.geoJson(data, {style: style, onEachFeature:onEachFeature}).addTo(map);
