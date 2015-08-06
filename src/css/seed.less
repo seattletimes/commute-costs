@@ -16,10 +16,34 @@ body {
   max-width: 630px;
 }
 
+.outmost {
+  border-top: 1px solid @df-border-gray;
+  border-bottom: 1px solid @df-border-gray;
+  padding: 20px 0;
+}
+
 .outer {
   position: relative;
   max-width: 420px;
   margin: auto;
+}
+
+.title {
+  font-weight: bold;
+  font-size: 26px;
+  text-align: center;
+  padding-bottom: 5px;
+}
+
+.chatter, .note {
+  font-size: 14px;
+  padding-bottom: 15px;
+  font-family: @df-serif;
+}
+
+.note {
+  font-size: 12px;
+  font-style: italic;
 }
 
 .aspect-ratio-outer {
@@ -45,9 +69,37 @@ body {
   }
 }
 
-.note {
-  font-size: 10px;
-  padding-top: 10px;
-  color: @df-middle-gray;
-  font-style: italic;
+.popuptext {
+  text-align: center;
+
+  .emphasis {
+    font-weight: bold;
+    font-size: 20px;
+
+    .up, .down {
+      font-size: 12px;
+      padding-right: 5px;
+    }
+    .up {
+      color: #1a9850;
+    }
+    .down {
+      color: #d73027;
+    }
+  }
+}
+
+div.leaflet-popup-content{
+  margin: 10px 5px;
+  width:auto;
+  max-width:240px;
+  font-family: @df-sans;
+}
+
+div.leaflet-popup-content-wrapper {
+  border-radius:3px;
+  max-width:240px;
+  box-shadow: 0 1px 14px rgba(0,0,0,0.30);
+  padding-left:10px;
+  padding-right:10px;
 }
