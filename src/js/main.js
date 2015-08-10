@@ -15,6 +15,8 @@ var mapElement = document.querySelector("leaflet-map");
 var L = mapElement.leaflet;
 var map = mapElement.map;
 
+var focused = false;
+
 var onEachFeature = function(feature, layer) {
   var up = true;
   var change = feature.properties.jobschange;
@@ -27,7 +29,27 @@ var onEachFeature = function(feature, layer) {
     change: change,
     up: up
   }));
+  layer.on({
+    click: function(e) {
+      focused = layer;
+      layer.setStyle({ weight: 2, fillOpacity: 1 });
+    },
+    mouseover: function(e) {
+      layer.setStyle({ weight: 2, fillOpacity: 1 });
+    },
+    mouseout: function(e) {
+      if (focused && focused == layer) { return }
+      layer.setStyle({ weight: 0.5, fillOpacity: 0.5 });
+    }
+  });
 };
+
+map.on("popupclose", function() {
+  if (focused) {
+    focused.setStyle({ weight: 0.5, fillOpacity: 0.5 });
+    focused = false;
+  }
+});
 
 function getColor(d) {
   return d > 0.1 ? '#006837' :
@@ -48,8 +70,11 @@ function style(feature) {
     weight: 0.5,
     opacity: 1,
     color: 'white',
-    fillOpacity: 1
+    fillOpacity: 0.5
   };
 }
 
-L.geoJson(data, {style: style, onEachFeature:onEachFeature}).addTo(map);
+L.geoJson(data, {
+  style: style, 
+  onEachFeature: onEachFeature
+}).addTo(map);
