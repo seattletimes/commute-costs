@@ -5,7 +5,7 @@
 require("component-responsive-frame/child");
 require("component-leaflet-map");
 
-var data = require("./censusData.geo.json");
+var data = require("./censusJobData.geo.json");
 var ich = require("icanhaz");
 
 var popupTemplate = require("./_popupTemplate.html");
@@ -17,9 +17,20 @@ var map = mapElement.map;
 
 var focused = false;
 
+function commafy( num ) {
+  var str = num.toString().split('.');
+  if (str[0].length >= 4) {
+      str[0] = str[0].replace(/(\d)(?=(\d{3})+$)/g, '$1,');
+  }
+  if (str[1] && str[1].length >= 4) {
+      str[1] = str[1].replace(/(\d{3})/g, '$1 ');
+  }
+  return str.join('.');
+}
+
 var onEachFeature = function(feature, layer) {
   var up = true;
-  var change = feature.properties.jobschange;
+  var change = feature.properties.jobsData_j;
   if (change < 0) { 
     change = change * -1;
     up = false;
@@ -27,7 +38,10 @@ var onEachFeature = function(feature, layer) {
   change = (change * 100).toFixed(2);
   layer.bindPopup(ich.popupTemplate({
     change: change,
-    up: up
+    up: up,
+    now: feature.properties.jobsData_1,
+    then: feature.properties.jobsData_n,
+    diff: commafy(feature.properties.jobsData_d)
   }));
   layer.on({
     click: function(e) {
@@ -66,7 +80,7 @@ function getColor(d) {
 
 function style(feature) {
   return {
-    fillColor: getColor(feature.properties.jobschange),
+    fillColor: getColor(feature.properties.jobsData_j),
     weight: 0.5,
     opacity: 1,
     color: 'white',

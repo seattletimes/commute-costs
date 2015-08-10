@@ -4,7 +4,20 @@
     {{^up}}<span class="down">&#9660;</span>{{/up}}
     {{change}}%
   </div>
-  {{#up}}Increase {{/up}}
-  {{^up}}Decrease {{/up}}
-  in number of nearby jobs
+  {{#up}}Increase {{/up}} {{^up}}Decrease {{/up}} in number of nearby jobs
+
+  <table>
+    <tr>
+      <td class="left">2012:</td>
+      <td><strong>{{now}}</strong></td>
+    </tr>
+    <tr class="now">
+      <td class="left">2000:</td>
+      <td><strong>{{then}}</strong></td>
+    </tr>
+    <tr class="diff">
+      <td class="left">Difference:</td>
+      <td><strong>{{diff}}</strong></td>
+    </tr>
+  </table>
 </div>
