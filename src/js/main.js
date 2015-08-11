@@ -15,6 +15,8 @@ var mapElement = document.querySelector("leaflet-map");
 var L = mapElement.leaflet;
 var map = mapElement.map;
 
+map.scrollWheelZoom.disable();
+
 var focused = false;
 
 function commafy( num ) {

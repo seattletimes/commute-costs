@@ -32,6 +32,7 @@ aside.legend {
       float: left;
       text-align: center;
       width: 100% / @legend-length;
+      position: relative;
     }
 
     .block {
@@ -39,6 +40,17 @@ aside.legend {
       height: 12px;
       display: block;
       vertical-align: text-top;
+    }
+    label {
+      white-space: nowrap;
+      position: absolute;
+
+      &.right {
+        right: 0;
+      }
+      &.left {
+        left: 0;
+      }
     }
   }
 
