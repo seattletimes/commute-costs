@@ -12,9 +12,35 @@
     <responsive-child>
       <div class="outmost">
         <div class="outer">
-          <div class="title">Average number of nearby jobs declines in South King County</div>
-          <div class="chatter">Between 2000 and 2012, the average number of jobs within a typical commute distance* in Seattle went up 1.4 percent. On the Eastside, it increased 5.1 percent. In South King County, though, the average number of nearby jobs went down 5.1 percent.</div>
-          <div class="note">*Number of jobs that fall within a 9-mile radius of the center of each census tract</div>
+          <div class="title">Nearby jobs</div>
+          <div class="chatter">Between 2000 and 2012, the average number of jobs within a typical commute distance* went up in Seattle and the Eastside, but went down in South King County.</div>
+          <div class="note">*Within a 9-mile radius of the center of each census tract.</div>
+
+          <table class="jobs-table">
+            <tr>
+              <th></th>
+              <th>2000</th>
+              <th>2012</th>
+              <th>Difference</th>
+              <th>% Change</th>
+            </tr>
+            <% csv.regional_data.forEach(function(row) { %>
+            <tr>
+              <td class="name"><%= row.area %></td>
+              <td><%= row.then %></td>
+              <td><%= row.now %></td>
+              <td><%= row.difference %></td>
+              <td>
+                <% if (row.up) { %>
+                  <span class="up">&#9650;</span>
+                <% } else { %>
+                  <span class="down">&#9660;</span>
+                <% } %>
+                <%= row.perc %>
+              </td>
+            </tr>
+            <% }) %>
+          </table>
 
           <div class="aspect-ratio-outer">
             <div class="aspect-ratio-inner">

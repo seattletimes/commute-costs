@@ -37,7 +37,7 @@ var onEachFeature = function(feature, layer) {
     change = change * -1;
     up = false;
   }
-  change = (change * 100).toFixed(2);
+  change = (change * 100).toFixed(1);
   layer.bindPopup(ich.popupTemplate({
     change: change,
     up: up,

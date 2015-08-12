@@ -38,19 +38,66 @@ body {
 
 .chatter, .note {
   font-size: 14px;
-  padding-bottom: 15px;
   font-family: @df-serif;
 }
 
 .note {
+  padding-top: 15px;
   font-size: 12px;
   font-style: italic;
+}
+
+.up {
+  color: #1a9850;
+}
+.down {
+  color: #d73027;
+}
+
+.jobs-table {
+  margin: auto;
+  margin-top: 15px;
+  margin-bottom: 25px;
+  font-size: 13px;
+  border-collapse: collapse;
+  border-bottom: 1px solid @df-light-gray;
+
+  @media @mobile {
+    font-size: 11px;
+  }
+
+  th, td {
+    text-align: right;
+    padding: 5px 8px;
+
+    @media @mobile {
+      padding: 6px 4px;
+    }
+  }
+
+  td {
+    border-top: 1px solid @df-light-gray;
+  }
+
+  .name {
+    text-align: left;
+  }
+
+  .up, .down {
+    font-size: 10px;
+    padding-right: 2px;
+  }
 }
 
 .aspect-ratio-outer {
   width: 95%;
   margin: auto;
   position: relative;
+
+  @media @mobile {
+    width: 100%;
+    padding: 0 30px;
+  }
 
   .aspect-ratio-inner {
     padding-bottom: percentage(@aspect-ratio);
@@ -80,12 +127,6 @@ body {
     .up, .down {
       font-size: 12px;
       padding-right: 5px;
-    }
-    .up {
-      color: #1a9850;
-    }
-    .down {
-      color: #d73027;
     }
   }
 
