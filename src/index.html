@@ -5,6 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
     <%= t.include("partials/_adHead.html") %>
   </head>
   <body>
@@ -12,7 +13,7 @@
     <responsive-child>
       <div class="outmost">
         <div class="outer">
-          <div class="title">Nearby jobs</div>
+          <div class="title">Average number of nearby jobs declines in South King County</div>
           <div class="chatter">Between 2000 and 2012, the average number of jobs within a typical commute distance* went up in Seattle and the Eastside, but went down in South King County.</div>
           <div class="note">*Within a 9-mile radius of the center of each census tract.</div>
 
@@ -42,9 +43,9 @@
             <% }) %>
           </table>
 
+          <div class="click"><i class="fa fa-arrow-down"></i> Click on census tracts for more information:</div>
           <div class="aspect-ratio-outer">
             <div class="aspect-ratio-inner">
-
               <leaflet-map lat="47.51" lng="-122.23" zoom=10>
                 <tile-layer layer="cartoPositron"></tile-layer>
               </leaflet-map>
