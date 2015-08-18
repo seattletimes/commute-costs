@@ -20,19 +20,16 @@ map.scrollWheelZoom.disable();
 var focused = false;
 
 function commafy( num ) {
-  var str = num.toString().split('.');
-  if (str[0].length >= 4) {
-      str[0] = str[0].replace(/(\d)(?=(\d{3})+$)/g, '$1,');
+  console.log(num)
+  if (num.length >= 4) {
+    num = num.replace(/(\d)(?=(\d{3})+$)/g, '$1,');
   }
-  if (str[1] && str[1].length >= 4) {
-      str[1] = str[1].replace(/(\d{3})/g, '$1 ');
-  }
-  return str.join('.');
+  return num;
 }
 
 var onEachFeature = function(feature, layer) {
   var up = true;
-  var change = feature.properties.change;
+  var change = feature.properties.Field5;
   if (change < 0) { 
     change = change * -1;
     up = false;
@@ -41,9 +38,9 @@ var onEachFeature = function(feature, layer) {
   layer.bindPopup(ich.popupTemplate({
     change: change,
     up: up,
-    now: commafy(feature.properties.now.toFixed(0)),
-    then: commafy(feature.properties.then.toFixed(0)),
-    diff: commafy(feature.properties.diff.toFixed(0))
+    now: commafy(feature.properties.Field4),
+    then: commafy(feature.properties.Field3),
+    diff: commafy(feature.properties.Field6)
   }));
   layer.on({
     click: function(e) {
@@ -82,7 +79,7 @@ function getColor(d) {
 
 function style(feature) {
   return {
-    fillColor: getColor(feature.properties.change),
+    fillColor: getColor(feature.properties.Field5),
     weight: 0.5,
     opacity: 1,
     color: 'white',
