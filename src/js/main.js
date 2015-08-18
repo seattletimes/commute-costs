@@ -5,7 +5,7 @@
 require("component-responsive-frame/child");
 require("component-leaflet-map");
 
-var data = require("./censusJobData.geo.json");
+var data = require("./updatedJobs.geo.json");
 var ich = require("icanhaz");
 
 var popupTemplate = require("./_popupTemplate.html");
@@ -32,7 +32,7 @@ function commafy( num ) {
 
 var onEachFeature = function(feature, layer) {
   var up = true;
-  var change = feature.properties.jobsData_j;
+  var change = feature.properties.change;
   if (change < 0) { 
     change = change * -1;
     up = false;
@@ -41,9 +41,9 @@ var onEachFeature = function(feature, layer) {
   layer.bindPopup(ich.popupTemplate({
     change: change,
     up: up,
-    now: feature.properties.jobsData_1,
-    then: feature.properties.jobsData_n,
-    diff: commafy(feature.properties.jobsData_d)
+    now: commafy(feature.properties.now.toFixed(0)),
+    then: commafy(feature.properties.then.toFixed(0)),
+    diff: commafy(feature.properties.diff.toFixed(0))
   }));
   layer.on({
     click: function(e) {
@@ -68,7 +68,7 @@ map.on("popupclose", function() {
 });
 
 function getColor(d) {
-  return d > 0.1 ? '#006837' :
+  return d > 0.08 ? '#006837' :
          d > 0.06 ? '#1a9850' :
          d > 0.03 ? '#66bd63' :
          d > 0.01 ? '#a6d96a' :
@@ -76,13 +76,13 @@ function getColor(d) {
          d > -.01 ? '#fee08b' :
          d > -.03 ? '#fdae61' :
          d > -.06 ? '#f46d43' :
-         d > -.1 ? '#d73027' :
+         d > -.08 ? '#d73027' :
                     '#a50026' ;
 }
 
 function style(feature) {
   return {
-    fillColor: getColor(feature.properties.jobsData_j),
+    fillColor: getColor(feature.properties.change),
     weight: 0.5,
     opacity: 1,
     color: 'white',
